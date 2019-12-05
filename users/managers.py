@@ -18,8 +18,10 @@ class CustomUserManager(BaseUserManager):
         user.save()
         return user
 
-    def create_super_user(self, email, first_name, last_name, password=None, **kwargs):
+    def create_superuser(self, email, first_name, last_name, password=None, **kwargs):
+        kwargs.setdefault('is_superuser', True)
         kwargs.setdefault('role', UserRoleChoice.SUPERADMIN)
         kwargs.setdefault('is_active', True)
         kwargs.setdefault('email_verified', True)
-        self.create_user(email, password, first_name, last_name, **kwargs)
+        self.create_user(email=email, password=password,
+                         first_name=first_name, last_name=last_name, **kwargs)

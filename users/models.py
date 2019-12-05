@@ -33,8 +33,4 @@ class User(AbstractBaseUser, PermissionsMixin):
   
   @property
   def is_staff(self):
-    return self.role in (UserRoleChoice.SUPERADMIN, UserRoleChoice.ADMIN)
-
-  @property
-  def is_superadmin(self):
-    return self.role == UserRoleChoice.SUPERADMIN
+    return True
